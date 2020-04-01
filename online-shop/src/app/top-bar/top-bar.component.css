@@ -1,0 +1,26 @@
+
+#header{
+    background-color: rgb(102, 16, 33);
+    padding-top: 2%;
+    padding-bottom: 2%;
+    text-align: center;
+
+} 
+.left{
+    float: left;
+    margin-left: 40px;   
+}
+.right{
+    float: right;
+    margin-right: 40px;
+}
+a{
+    text-decoration: none;
+    word-spacing: 5px;
+    color: black;
+    font-size:medium;
+    font-weight: bolder;
+}
+a:hover{
+    color: blanchedalmond;
+}
