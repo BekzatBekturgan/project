@@ -1,0 +1,16 @@
+<div class="cart">
+    <div class="cart-header">
+        <h2>MY CART</h2>
+    </div>
+    <div class="close-container">
+        <img  (click)=' clearCart()' src="https://cdn3.iconfinder.com/data/icons/musthave/256/Delete.png" width="50" height="50">
+    </div>
+    <div class="cart-container">
+        <div class="cart-item" *ngFor="let item of items">
+            <!-- <img  class="close-button" src="https://cdn.onlinewebfonts.com/svg/img_211963.png" width="30" height="30" alt="suret"> -->
+            <span>{{ item.name }}</span>
+            <img  src="{{item.Image[0]}}" width="300" height="240" alt="suret">
+            <span>{{ item.price }}</span>
+        </div>
+    </div>
+</div>

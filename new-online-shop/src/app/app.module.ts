@@ -9,6 +9,7 @@ import { ProductdetailsComponent } from './productdetails/productdetails.compone
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SliderModule } from './slider/slider.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CartComponent } from './cart/cart.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CategoriesComponent,
     ProductsComponent,
     ProductdetailsComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
