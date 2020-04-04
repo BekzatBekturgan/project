@@ -1,0 +1,33 @@
+<div class="container">
+<h2 class="h2-style">{{product.name}}</h2>
+
+<div class="menu-line">
+  <button (click)="addToCart()"class="addToCart">Add to Cart</button>
+</div>
+
+<div class="container-slider">
+<angular-image-slider
+  [autoRotate]="true"
+  [autoRotateAfter]="5000"
+  [autoRotateRight]="true"
+  [images]=product.Image
+></angular-image-slider>
+</div>
+<div class="share-buttons">
+  <button (click)="share(1)" style="background-color: black; border-color: black;">
+    <img class="" src="https://s18955.pcdn.co/wp-content/uploads/2019/06/telegram-copy.png" width="24" height="24">   
+  </button>
+  <button (click)="share(2)" style="background-color: black; border-color: black;">
+    <img class="" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/WhatsApp_logo-color-vertical.svg/1200px-WhatsApp_logo-color-vertical.svg.png" width="24" height="24">   
+  </button>
+</div>
+<div class="box">
+<p>
+    Price: {{product.price}} <br>
+    Description: {{ product.description }} <br>
+</p>
+</div>
+<div class="bottom">
+  <button (click)="goBack()"class="back-button">back</button>
+</div>
+</div>

@@ -1,0 +1,53 @@
+@media only screen and (min-width: 530px) {
+.products-style{
+    display: flex;
+    justify-content: space-between;
+    padding:0;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.img-container :hover{
+    transform: scale(1.5);
+}
+}
+
+.box{
+    flex-basis: 20%;
+    padding:15px;
+    list-style: none;
+    font-size: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;
+    background-color:  rgb(77, 15, 0);
+    margin-bottom: 2%;
+}
+
+.container{
+    padding: 0;
+    margin:5%;
+    align-items: center;
+}
+
+.products-style li a{
+    text-decoration: none;
+    color: cornsilk;
+}
+.h2-style{
+    text-align: center;
+}
+
+ul{
+    padding: 0;
+}
+.bottom{
+    text-align: center;
+}
+.back-button{
+    text-decoration: none;
+    color: cornsilk;
+    background-color: rgb(77, 15, 0);
+    padding:10px;
+    border-radius: 2px;
+    margin-right: 19px;
+}

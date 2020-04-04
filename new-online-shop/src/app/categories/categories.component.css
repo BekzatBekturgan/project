@@ -1,0 +1,52 @@
+@media only screen and (min-width: 530px) {
+.categories-style{
+    display: flex;
+    justify-content: space-around;
+    padding:0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.img-container :hover{
+    transform: scale(1.5);
+}
+.sales-products{
+    display: inline-block;
+}
+
+}
+
+.categories-style li{
+    flex-basis: 20%;
+    padding:10px 0;
+    list-style: none;
+    font-size: 40px;
+    border: 1px solid black;
+    border-radius: 6px;
+    background-color: rgb(77, 15, 0);
+    margin:10px;
+    text-align: center;
+}
+
+.container{
+    margin:30px;
+    color: rgb(77, 15, 0);
+    text-align: center;
+}
+
+.categories-style li a{
+    text-decoration: none;
+    color: cornsilk;
+    padding: 15px 75px;
+}
+
+ul{
+    padding: 0;
+}
+.sales{
+    background-color: rgb(245, 240, 239);
+    padding: 1%;
+    margin: 5%;
+    border: 7px solid rgb(77, 15, 0);
+ }

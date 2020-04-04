@@ -7,6 +7,7 @@ import { TopBarComponent } from './top-bar/top-bar.component';
 import { MainComponent } from './main/main.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { BottomBarComponent } from './bottom-bar/bottom-bar.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { BottomBarComponent } from './bottom-bar/bottom-bar.component';
     TopBarComponent,
     MainComponent,
     ProductListComponent,
-    BottomBarComponent
+    BottomBarComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,

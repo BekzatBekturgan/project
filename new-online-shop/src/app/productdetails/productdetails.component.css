@@ -1,0 +1,49 @@
+.container{
+    margin: 0 6%;
+    text-align: center;
+    display: flex;
+    flex-direction:column;
+}
+.menu-line{
+    text-align: right;
+    margin-right: 7%;
+}
+.share-buttons{
+    text-align: center;
+}
+.container-slider{
+    padding:3%
+}
+.box{
+    flex-basis: 20% and auto;
+    padding:10px;
+    list-style: none;
+    font-size: 20px;
+    border: 1px solid black;
+    border-radius: 10px; 
+    text-align: center;
+    background-color: rgb(77, 15, 0);
+    margin:0 7%;
+    color: cornsilk;
+    
+}
+.addToCart{
+    text-decoration: none;
+    color:  rgb(77, 15, 0);
+    background-color: cornsilk;
+    padding:10px;
+    border-radius: 2px;
+  
+}
+.bottom{
+    text-align: center;
+    margin: 2%;
+}
+.back-button{  
+    text-decoration: none;
+    color: cornsilk;
+    background-color: rgb(77, 15, 0);
+    padding:10px;
+    border-radius: 2px;
+    
+}
