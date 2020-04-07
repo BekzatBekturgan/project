@@ -12,6 +12,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CartComponent } from './cart/cart.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService }  from './in-memory-data.service';
 
 
 @NgModule({
@@ -29,7 +32,11 @@ import { RegistrationComponent } from './registration/registration.component';
       AppRoutingModule,
       SliderModule,
       BrowserAnimationsModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      HttpClientModule,
+      HttpClientInMemoryWebApiModule.forRoot(
+         InMemoryDataService, { dataEncapsulation: false }
+       )
    ],
    providers: [],
    bootstrap: [
