@@ -10,7 +10,9 @@
             <!-- <img  class="close-button" src="https://cdn.onlinewebfonts.com/svg/img_211963.png" width="30" height="30" alt="suret"> -->
             <span>{{ item.name }}</span>
             <img  src="{{item.Image[0]}}" width="300" height="240" alt="suret">
-            <span>{{ item.price }}</span>
+            <span>{{ item.price }}$</span>
         </div>
     </div>
+    <div class="bottom"><button class="buy-button" (click)="purchase()">Purchase</button></div>
+    
 </div>
