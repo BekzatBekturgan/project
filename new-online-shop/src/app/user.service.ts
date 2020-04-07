@@ -17,5 +17,10 @@ export class UserService {
   getUser(username: String): Observable<User> {
     return of(USERS.find(user => user.username === username));
   }
+
+  register(user: User){
+    USERS.push(user);
+  }
+
   
 }
