@@ -10,24 +10,30 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SliderModule } from './slider/slider.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CartComponent } from './cart/cart.component';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CategoriesComponent,
-    ProductsComponent,
-    ProductdetailsComponent,
-    CartComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    SliderModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+   declarations: [
+      AppComponent,
+      CategoriesComponent,
+      ProductsComponent,
+      ProductdetailsComponent,
+      CartComponent,
+      LoginComponent,
+      RegistrationComponent
+   ],
+   imports: [
+      BrowserModule,
+      AppRoutingModule,
+      SliderModule,
+      BrowserAnimationsModule,
+      ReactiveFormsModule
+   ],
+   providers: [],
+   bootstrap: [
+      AppComponent
+   ]
 })
 export class AppModule { }
