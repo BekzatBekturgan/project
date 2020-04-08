@@ -10,7 +10,7 @@ import {Product} from '../product'
 export class CategoriesComponent implements OnInit {
   public categories: Category[];
   public products: Product[];
-  
+  public inputText: string = "";
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
