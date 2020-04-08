@@ -4,6 +4,12 @@ import { Location } from '@angular/common';
 import {ProductService} from '../product.service';
 import {Product} from '../product';
 import { CartService } from '../cart.service';
+export class Review {
+  constructor(
+    public email: String, 
+    public review: String
+  ){}
+}
 @Component({
   selector: 'app-productdetails',
   templateUrl: './productdetails.component.html',
@@ -24,7 +30,7 @@ export class ProductdetailsComponent implements OnInit {
     private location: Location,
     private route: ActivatedRoute,
     private productService: ProductService,
-    private cartService: CartService
+    private cartService: CartService,
     ){}
 
   ngOnInit(): void {

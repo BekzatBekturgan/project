@@ -27,6 +27,13 @@
     Description: {{ product.description }} <br>
 </p>
 </div>
+<div class = "review-form">
+  <label for = "review-form-input">Please, send a review</label>
+  <input class = "review-form-input" type="text" name = "review" [(ngModel)]="phone.title"> 
+  <label for = "review-form-input-email">Please, write down your email</label>
+  <input type="text" class = "review-form-input-email">
+  <button class = "send-button">Send</button>
+</div>
 <div class="bottom">
   <button (click)="goBack()"class="back-button">back</button>
 </div>
