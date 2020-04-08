@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { PRODUCTS } from './products';
 import { Product } from './product';
+import { Order } from './order'
 import { Category } from './category';
 import { CATEGORIES } from './categories';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -25,55 +26,41 @@ export class ProductService {
 
   getProduct(id: number): Observable<Product> {
     const url = `${this.productsUrl}/${id}`;
-     return this.http.get<Product>(url).pipe(
-    catchError(this.handleError<Product>(`getProduct id=${id}`))
-  );
-    //return of(PRODUCTS.find(product => product.id === id));
+    return this.http.get<Product>(url).pipe(
+      catchError(this.handleError<Product>(`getProduct id=${id}`))
+    ); 
   }
   getCategory(): Observable<Category[]> {
-    //return of(CATEGORIES);
     return this.http.get<Category[]>(this.categoriesUrl);
   }
+
   getCategories(id: number): Observable<Category> {
     const url = `${this.categoriesUrl}/${id}`;
-     return this.http.get<Category>(url).pipe(
+    return this.http.get<Category>(url).pipe(
     catchError(this.handleError<Category>(`getCategory id=${id}`))
   );
-    //return of(CATEGORIES.find(category => category.id === id));
   }
-
+ 
 
   getProductofC(categoryId: number): Observable<Product[]> {
-//     const url = `${this.categoriesUrl}/${categoryId}`;
-//     return this.http.get<Product[]>(url).pipe(
-//    catchError(this.handleError<Product[]>(`getProduct id=${categoryId}`))
-//  );
+    // return this.http.get<Product[]>(this.productsUrl)
+    // .pipe(
+    //   catchError(this.handleError<Product[]>(`getProduct id=${categoryId}`))
+    // );
     return of(PRODUCTS.filter(product => product.categoryId === categoryId));
-}
+  }
+
+  // purchase (order: Order): Observable<Order> {
+    
+  // }
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
-    // TODO: send the error to remote logging infrastructure
-    console.error(error); // log to console instead
+    console.error(error); 
 
-    // TODO: better job of transforming error for user consumption
-    //this.log(`${operation} failed: ${error.message}`);
-
-    // Let the app keep running by returning an empty result.
     return of(result as T);
     };
- }
- 
- httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
-/** POST: add a new hero to the server */
-addHero (product: Product): Observable<Product> {
-  return this.http.post<Product>(this.productsUrl, product, this.httpOptions).pipe(
-    tap((newHero: Product) => 
-    catchError(this.handleError<Product>('addHero')))
-  );
-}
+  }
 }
 
