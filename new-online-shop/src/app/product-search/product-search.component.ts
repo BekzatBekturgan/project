@@ -15,6 +15,7 @@ import { ProductService } from '../product.service';
   styleUrls: ['./product-search.component.css']
 })
 export class ProductSearchComponent implements OnInit {
+  inputText: String;
   products$: Observable<Product[]>;
   private searchTerms = new Subject<string>();
 

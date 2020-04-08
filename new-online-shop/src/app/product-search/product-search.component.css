@@ -9,7 +9,9 @@
     cursor: pointer;
     list-style-type: none;
   }
-  
+  .input-text{
+    color: white;
+  }
   .search-result li:hover {
     background-color: #607D8B;
   }
