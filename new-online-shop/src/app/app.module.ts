@@ -8,7 +8,7 @@ import { ProductsComponent } from './products/products.component';
 import { ProductdetailsComponent } from './productdetails/productdetails.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SliderModule } from './slider/slider.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CartComponent } from './cart/cart.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -31,6 +31,7 @@ import { InMemoryDataService }  from './in-memory-data.service';
       BrowserModule,
       AppRoutingModule,
       SliderModule,
+      FormsModule,
       BrowserAnimationsModule,
       ReactiveFormsModule,
       HttpClientModule,

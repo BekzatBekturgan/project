@@ -1,0 +1,16 @@
+<div class="cart">
+  <div class="cart-header">
+      <h2>SHOP REVIEWS</h2>
+  </div>
+  <div class="close-container">
+      <img  (click)=' clearReviews()' src="https://cdn3.iconfinder.com/data/icons/musthave/256/Delete.png" width="50" height="50">
+  </div>
+  <div class="cart-container">
+      <div class="cart-item" *ngFor="let review of reviews">
+          
+          <span>{{ review.email }}</span>
+          <span>{{ review.reviewString }}$</span>
+      </div>
+  </div>
+  
+</div>

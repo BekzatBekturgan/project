@@ -23,7 +23,6 @@ export class CartService {
   }
 
   deleteFromCart(product){
-    this.items.splice(product,1);
-    
+    this.items.splice(product,1); 
   }
 }
