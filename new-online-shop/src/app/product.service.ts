@@ -62,5 +62,15 @@ export class ProductService {
     return of(result as T);
     };
   }
+/* GET heroes whose name contains search term */
+searchHeroes(term: string): Observable<Product[]> {
+  if (!term.trim()) {
+    // if not search term, return empty hero array.
+    return of([]);
+  }
+  return this.http.get<Product[]>(`${this.productsUrl}/?name=${term}`).pipe(
+    catchError(this.handleError<Product[]>('searchProducts', []))
+  );
+}
 }
 

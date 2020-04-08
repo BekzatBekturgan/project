@@ -27,4 +27,7 @@ export class CartComponent implements OnInit {
     window.alert('Thanks for your order!!!');
   }
 
+
+
+
 }

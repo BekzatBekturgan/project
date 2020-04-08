@@ -15,6 +15,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { HttpClientModule }    from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
+import { ProductSearchComponent } from './product-search/product-search.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { InMemoryDataService }  from './in-memory-data.service';
       ProductdetailsComponent,
       CartComponent,
       LoginComponent,
-      RegistrationComponent
+      RegistrationComponent,
+      ProductSearchComponent
    ],
    imports: [
       BrowserModule,
