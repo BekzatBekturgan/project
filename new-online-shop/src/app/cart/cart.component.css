@@ -35,3 +35,14 @@
     background-color:  rgb(77, 15, 0);
     margin: 3.7%;
 }
+.bottom{
+    text-align: center;
+}
+.buy-button{
+    text-decoration: none;
+    color: cornsilk;
+    background-color: rgb(77, 15, 0);
+    padding:10px;
+    border-radius: 2px;
+}
+
