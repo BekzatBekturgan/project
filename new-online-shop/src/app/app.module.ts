@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoriesComponent } from './categories/categories.component';
@@ -8,7 +8,7 @@ import { ProductsComponent } from './products/products.component';
 import { ProductdetailsComponent } from './productdetails/productdetails.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SliderModule } from './slider/slider.module';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CartComponent } from './cart/cart.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -16,6 +16,7 @@ import { HttpClientModule }    from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
 import { ProductSearchComponent } from './product-search/product-search.component';
+
 
 
 @NgModule({
@@ -31,9 +32,9 @@ import { ProductSearchComponent } from './product-search/product-search.componen
    ],
    imports: [
       BrowserModule,
+      FormsModule,
       AppRoutingModule,
       SliderModule,
-      FormsModule,
       BrowserAnimationsModule,
       ReactiveFormsModule,
       HttpClientModule,

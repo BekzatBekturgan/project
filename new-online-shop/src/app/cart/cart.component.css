@@ -5,6 +5,7 @@
         flex-direction: row;
         flex-wrap: wrap;
     }
+    
 }
 
 .cart{
@@ -44,5 +45,17 @@
     background-color: rgb(77, 15, 0);
     padding:10px;
     border-radius: 2px;
+    margin: 4%;
 }
-
+.shipping-container{
+    text-align: center;
+    color: cornsilk;
+    border: cornsilk solid 2px; 
+    padding:5%;
+    background-color: rgb(77, 15, 0);
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.form-group{
+    margin: 2%;
+}
