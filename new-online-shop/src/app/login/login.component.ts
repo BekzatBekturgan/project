@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required]
   });
-    this.getUsers()
+    this.getUsers();
   }
 
   get f() { return this.loginForm.controls; }
@@ -44,11 +44,16 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
         return;
     }
-
     this.loading = true;
-    if(this.login(this.f.username.value, this.f.password.value) == true){
-      window.alert('Login is success');
+    var user;
+    for(user in this.users){
+      if(this.f.username.value === user.username){
+        if(this.f.password.value === user.password){
+          window.alert('Login is success');
+        }
+      }
     }
+    
   }
   login(username, password){
     var user;
