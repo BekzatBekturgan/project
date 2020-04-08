@@ -40,9 +40,14 @@ export class ProductdetailsComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
+
+
+
   addToCart(product) {
     this.cartService.addToCart(product);
     window.alert('Your product has been added to the cart!');
   }
+
+  
 
 }

@@ -64,5 +64,16 @@ export class ProductService {
     return of(result as T);
     };
  }
+ 
+ httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+/** POST: add a new hero to the server */
+addHero (product: Product): Observable<Product> {
+  return this.http.post<Product>(this.productsUrl, product, this.httpOptions).pipe(
+    tap((newHero: Product) => 
+    catchError(this.handleError<Product>('addHero')))
+  );
+}
 }
 
