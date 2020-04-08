@@ -30,8 +30,7 @@ export class ProductdetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private productService: ProductService,
     private cartService: CartService,
-    private reviewService: ReviewService,
-  
+    private reviewService: ReviewService
     ){}
 
   ngOnInit(): void {

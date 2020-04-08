@@ -26,15 +26,6 @@
     Price: {{product.price}}$ <br>
     Description: {{ product.description }} <br>
 </p>
-
-<div>
-  <label for="email">Please, write your email</label>
-  <input type="text" [(ngModel)] = "review.email" id = "email">
-  <label for="reviewText">Please, write your review</label>
-  <input type="text" [(ngModel)] = "review.reviewText" id = "reviewText">
-  <button (click) = "onSend(review.email, review.reviewText)">Send</button>
-</div>
-
 <div class="bottom">
   <button (click)="goBack()"class="back-button">back</button>
 </div>
