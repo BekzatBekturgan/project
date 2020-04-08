@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
     this.userService.getUsers()
       .subscribe(users => this.users = users);
   }
-
   onSubmit() {
     this.submitted = true;
 
@@ -47,7 +46,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-    if(this.login(this.f.username.value, this.f.password.value)){
+    if(this.login(this.f.username.value, this.f.password.value) == true){
       window.alert('Login is success');
     }
   }
