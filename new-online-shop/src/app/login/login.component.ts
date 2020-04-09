@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   returnUrl: string;
   users: User[];
+  home = false;
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -45,23 +46,17 @@ export class LoginComponent implements OnInit {
         return;
     }
     this.loading = true;
-    var user;
-    for(user in this.users){
-      if(this.f.username.value === user.username){
-        if(this.f.password.value === user.password){
-          window.alert('Login is success');
+    for(var user in this.users){
+      if(this.users[user].username === this.f.username.value){
+        if(this.users[user].password === this.f.password.value){
+          window.alert('login is success');
+          this.home = true;
         }
       }
     }
-    
-  }
-  login(username, password){
-    var user;
-    for(user in this.users){
-      if(user.username === username && user.password === password){
-        return true;
-      }
+    if(this.home == true){
+      this.router.navigateByUrl('/categories');
     }
-    return false;
+    
   }
 }
