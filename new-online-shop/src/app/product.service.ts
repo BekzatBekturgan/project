@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { PRODUCTS } from './products';
 import { Product } from './product';
-import { Order } from './order'
 import { Category } from './category';
-import { CATEGORIES } from './categories';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
@@ -43,16 +41,9 @@ export class ProductService {
  
 
   getProductofC(categoryId: number): Observable<Product[]> {
-    // return this.http.get<Product[]>(this.productsUrl)
-    // .pipe(
-    //   catchError(this.handleError<Product[]>(`getProduct id=${categoryId}`))
-    // );
     return of(PRODUCTS.filter(product => product.categoryId === categoryId));
   }
 
-  // purchase (order: Order): Observable<Order> {
-    
-  // }
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -62,13 +53,11 @@ export class ProductService {
     return of(result as T);
     };
   }
-/* GET heroes whose name contains search term */
-searchHeroes(term: string): Observable<Product[]> {
-  if (!term.trim()) {
-    // if not search term, return empty hero array.
-    return of([]);
-  }
-  return this.http.get<Product[]>(`${this.productsUrl}/?name=${term}`).pipe(
+  searchHeroes(term: string): Observable<Product[]> {
+    if (!term.trim()) {
+      return of([]);
+    }
+    return this.http.get<Product[]>(`${this.productsUrl}/?name=${term}`).pipe(
     catchError(this.handleError<Product[]>('searchProducts', []))
   );
 }
