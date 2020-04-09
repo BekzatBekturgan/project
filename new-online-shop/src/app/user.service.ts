@@ -19,11 +19,6 @@ export class UserService {
       catchError(this.handleError<User[]>('getUsers', []))
     );
   }
-  /*
-  getUsers(): Observable<User[]> {
-    return of(USERS);
-  }
-  */
 
   getUser(username: String): Observable<User> {
     return of(USERS.find(user => user.username === username));
