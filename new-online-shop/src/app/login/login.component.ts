@@ -47,15 +47,19 @@ export class LoginComponent implements OnInit {
     }
     this.loading = true;
     for(var user in this.users){
-      if(this.users[user].username === this.f.username.value){
-        if(this.users[user].password === this.f.password.value){
+      if(this.users[user].username === this.f.username.value && 
+        this.users[user].password === this.f.password.value){
           window.alert('login is success');
           this.home = true;
-        }
+          break;
       }
     }
     if(this.home == true){
       this.router.navigateByUrl('/categories');
+    }
+    else{
+      window.alert('wrong password or username');
+      this.loading = false;
     }
     
   }
