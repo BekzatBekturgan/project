@@ -17,6 +17,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
 import { ProductSearchComponent } from './product-search/product-search.component';
 import { QuestionsComponent } from './questions/questions.component';
+import { BottomBarComponent } from './bottom-bar/bottom-bar.component';
 
 
 
@@ -30,7 +31,8 @@ import { QuestionsComponent } from './questions/questions.component';
       LoginComponent,
       RegistrationComponent,
       ProductSearchComponent,
-      QuestionsComponent
+      QuestionsComponent,
+      BottomBarComponent
    ],
    imports: [
       BrowserModule,
