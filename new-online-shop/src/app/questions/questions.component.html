@@ -1,0 +1,12 @@
+<div class="flex-container">
+    <div *ngFor="let question of questions">
+        <p style="text-align: center;">
+          {{ question.question }}
+        </p>
+        <div class = "un">
+            <label for="pseudoBtn" class="btn">Show Answer</label>
+          <input type="checkbox" id="pseudoBtn">
+            <p class="text">{{ question.answer }}</p>
+        </div>
+    </div>
+  </div>
