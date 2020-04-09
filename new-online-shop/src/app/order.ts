@@ -1,5 +1,7 @@
+import { Product } from './product';
+
 export interface Order {
     id: number;
-    userID: number;
-    items: Array<number>;
+    userName: string;
+    items: Array<Product>;
   }

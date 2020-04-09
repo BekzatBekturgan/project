@@ -180,15 +180,35 @@ export class InMemoryDataService implements InMemoryDbService {
     ];
 
     const orders: Order[] = [
-      {id:1, userID:5423, items: [1,2,3]},
-      {id:2, userID:5423, items: [4,3]}
+      {id:1, userName: "b_bekturgan", items: [products[1], products[3]]},
+      {id:2, userName: "a_tazhibai", items: [products[12]]}
     ];
 
     const users: User[] = [
-      {firstName: 'Bekzat',
-      lastName: 'Bekturgan',
-      username: 'b_bekturgan',
-      password: '123456789'},
+      {
+        firstName: 'Bekzat',
+        lastName: 'Bekturgan',
+        username: 'b_bekturgan',
+        password: '123456789',
+        address: 'address1',
+        phone: '777777777',
+      },
+      {
+        firstName: 'Yerassyl',
+        lastName: 'Daniyarbekuly',
+        username: 'e_daniyarbekuly',
+        password: '123456789',
+        address: 'address2',
+        phone: '777777777',
+      },
+      {
+        firstName: 'Aigerim',
+        lastName: 'Tazhibai',
+        username: 'a_tazhibai',
+        password: '123456789',
+        address: 'address2',
+       phone: '777777777',
+      }
     ];
     const questions: Questions[]= [
       {
@@ -211,11 +231,6 @@ export class InMemoryDataService implements InMemoryDbService {
     return {products, categories, orders, users, questions};
   }
 
-  // Overrides the genId method to ensure that a hero always has an id.
-  // If the heroes array is empty,
-  // the method below returns the initial number (11).
-  // if the heroes array is not empty, the method below returns the highest
-  // hero id + 1.
   // genId(products: Product[]): number {
   //   return products.length > 0 ? Math.max(...products.map(hero => hero.id)) + 1 : 11;
   // }
