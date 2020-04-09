@@ -16,5 +16,4 @@ export class QuestionsComponent implements OnInit {
   getQuestions(): void {
     this.questionsService.getQuestions().subscribe(questions => this.questions = questions);
   }
-
 }
