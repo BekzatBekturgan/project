@@ -1,0 +1,19 @@
+.flex-container > div {
+    border: white solid;
+    background-color: #f1f1f1;
+    flex-direction: row;
+    color: black;
+}
+.flex-container {
+    display: flex; 
+    color: black;
+    justify-content: center;
+    flex-direction: column;
+    border: white solid;
+    color: black;
+}
+div{
+    margin-top:15px;
+    margin-left: 10%;
+    width: 80%;
+}

@@ -18,15 +18,11 @@ export class ProductSearchComponent implements OnInit {
   inputText: String;
   products$: Observable<Product[]>;
   private searchTerms = new Subject<string>();
-
   constructor(private productService: ProductService) {}
-
   // Push a search term into the observable stream.
   search(term: string): void {
     this.searchTerms.next(term);
   }
-
-
   ngOnInit(): void {
     this.products$ = this.searchTerms.pipe(
       // wait 300ms after each keystroke before considering the term

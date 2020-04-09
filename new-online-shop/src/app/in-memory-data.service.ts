@@ -3,6 +3,7 @@ import { Product } from './product';
 import { Category } from './category'
 import { Order } from './order'
 import { User } from './User'
+import { Questions } from './questioninterface';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -209,10 +210,24 @@ export class InMemoryDataService implements InMemoryDbService {
        phone: '777777777',
       }
     ];
-    return {products, categories, orders, users};
+    const questions: Questions[]= [
+      {
+        question: 'Why are your prices so low?',
+        answer: 'Watch Shop delivers thousands of watches to customers every day in an absolutely efficient manner, enabling us under certain circumstances to offer special offers and exclusives.',
+      },
+      {
+        question: "What if I order a watch and I don't like it?",
+        answer: 'We operate a full 30 days refund policy, where if you change your mind on any purchase you can return it to us within 30 days for a full refund. All we ask is that the watch is returned to us unworn.',
+      },
+      {
+        question: 'Are batteries included in the watches?',
+        answer:'Yes, brand new batteries are included in all watches. These are fitted at the factory by the manufacturer - your watch is ready to wear as soon as you receive it.',
+      },
+      {
+        question:'Do you sell fake/replica watches?',
+        answer: 'No. All of our watches are 100% genuine products, supplied to us directly from the manufacturer.',
+      }
+  ]
+    return {products, categories, orders, users, questions};
   }
-
-  // genId(products: Product[]): number {
-  //   return products.length > 0 ? Math.max(...products.map(hero => hero.id)) + 1 : 11;
-  // }
  }

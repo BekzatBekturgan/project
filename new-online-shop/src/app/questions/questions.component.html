@@ -1,0 +1,10 @@
+<div class="flex-container">
+    <div *ngFor="let question of questions; let i = index">
+        <div class = "text">
+            <p style="text-align: center;">
+                {{ question.question }}
+              </p>
+        <p class="text">{{ question.answer }}</p>
+        </div>
+    </div>
+  </div>
