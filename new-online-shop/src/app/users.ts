@@ -9,4 +9,20 @@ export const USERS: User[] = [
         address: 'address1',
         phone: '777777777',
     },
+    {
+        firstName: 'Yerassyl',
+        lastName: 'Daniyarbekuly',
+        username: 'e_daniyarbekuly',
+        password: '123456789',
+        address: 'address2',
+        phone: '777777777',
+      },
+      {
+        firstName: 'Aigerim',
+        lastName: 'Tazhibai',
+        username: 'a_tazhibai',
+        password: '123456789',
+        address: 'address2',
+       phone: '777777777',
+      }
 ]
