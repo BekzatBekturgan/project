@@ -9,21 +9,13 @@ import { catchError, map, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UserService {
-  private usersUrl = 'api/login'
+  private usersUrl = 'api/users'
   constructor(
     private http: HttpClient,
   ) { }
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.usersUrl)
-    .pipe(
-      catchError(this.handleError<User[]>('getUsers', []))
-    );
+    return this.http.get<User[]>(this.usersUrl);
   }
-  /*
-  getUsers(): Observable<User[]> {
-    return of(USERS);
-  }
-  */
 
   getUser(username: String): Observable<User> {
     return of(USERS.find(user => user.username === username));
