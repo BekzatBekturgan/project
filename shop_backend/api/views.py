@@ -2,8 +2,8 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from main.models import Category, Product, Order, User
-from main.serializers import CategorySerializer, ProductSerializer, OrderSerializer, UserSerializer
+from api.models import Category, Product, Order, User
+from api.serializers import CategorySerializer, ProductSerializer, OrderSerializer, UserSerializer
 
 #CRUD and Serializer done
 @api_view(['GET', 'POST'])
@@ -97,6 +97,6 @@ class UserAPIView(APIView):
             return Response({'error': str(e)})
 
     def get(self, request, id):
-        vacancy = self.get_object(id)
-        serializer = OrdersListAPIView(vacancy)
+        user = self.get_object(id)
+        serializer = UserSerializer(user)
         return Response(serializer.data)
