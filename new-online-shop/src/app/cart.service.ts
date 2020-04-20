@@ -1,19 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
     items = [];
-  constructor(private http:HttpClient) {}
+  constructor() {}
 
   addToCart(product) {
     this.items.push(product);
   }
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
 
   getItems() {
     return this.items;

@@ -1,8 +1,9 @@
 from rest_framework import status
 from rest_framework.decorators import api_view
+from rest_framework.views import APIView
 from rest_framework.response import Response
-from main.models import Category, Product
-from main.serializers import CategorySerializer, ProductSerializer
+from main.models import Category, Product, Order, User
+from main.serializers import CategorySerializer, ProductSerializer, OrderSerializer, UserSerializer
 
 #CRUD and Serializer done
 @api_view(['GET', 'POST'])
@@ -68,3 +69,34 @@ def product_detail(request, category_id):
         products.delete()
         return Response({'deleted': True})
 
+
+#order
+
+class OrdersListAPIView(APIView):
+    def get(self, request):
+        orders = Order.objects.all()
+        serializer = OrderSerializer(orders, many=True)
+
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = OrderSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response({'error': serializer.errors},
+                        status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+#user
+
+class UserAPIView(APIView):
+    def get_object(self, id):
+        try:
+            return User.objects.get(id=id)
+        except User.DoesNotExist as e:
+            return Response({'error': str(e)})
+
+    def get(self, request, id):
+        vacancy = self.get_object(id)
+        serializer = OrdersListAPIView(vacancy)
+        return Response(serializer.data)

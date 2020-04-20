@@ -18,7 +18,6 @@ export class CategoriesComponent implements OnInit {
     this.getProducts();
   }
   getCategories(){
-     
     this.productService.getCategory()
       .subscribe(categories => this.categories = categories);
   }
