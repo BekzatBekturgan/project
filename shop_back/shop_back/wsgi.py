@@ -1,5 +1,5 @@
 """
-WSGI config for new_online_shop project.
+WSGI config for shop_back project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'new_online_shop.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'shop_back.settings')
 
 application = get_wsgi_application()

@@ -17,7 +17,7 @@ class Product(models.Model):
     price = models.FloatField(default=0)
     description = models.TextField()
     plink = models.TextField()
-    image = ArrayField(models.CharField())
+    image = ArrayField(models.CharField(max_length=1000))
     sale = models.BooleanField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
 
