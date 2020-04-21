@@ -102,6 +102,7 @@ class UserAPIView(APIView):
         serializer = UserSerializer(users, many=True)
 
         return Response(serializer.data)
+
     def post(self, request):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
@@ -109,6 +110,8 @@ class UserAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response({'error': serializer.errors},
                         status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
 
 
 class UserDetailsAPIView(APIView):

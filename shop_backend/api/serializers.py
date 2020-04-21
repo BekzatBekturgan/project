@@ -32,6 +32,8 @@ class OrderSerializer(serializers.ModelSerializer):
         fields = '_all_'
 
 
+
+
 class UserSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     username = serializers.CharField()
@@ -44,8 +46,8 @@ class UserSerializer(serializers.Serializer):
     def create(self, validated_data):
         user = User.objects.create(username=validated_data.get('username'),
                                    password=validated_data.get('password'),
-                                   firstname=validated_data.get('firstName'),
-                                   lastname=validated_data.get('lastName'),
+                                   firstName=validated_data.get('firstName'),
+                                   lastName=validated_data.get('lastName'),
                                    address=validated_data.get('address'),
                                    phone=validated_data.get('phone'),
                                    )
@@ -58,6 +60,6 @@ class UserSerializer(serializers.Serializer):
         instance.firstName = validated_data.get('firstName', instance.firstname)
         instance.lastName = validated_data.get('lastName', instance.lastName)
         instance.address = validated_data.get('address', instance.address)
-        instance.address = validated_data.get('phone', instance.phone)
+        instance.phone = validated_data.get('phone', instance.phone)
         instance.save()
         return instance
