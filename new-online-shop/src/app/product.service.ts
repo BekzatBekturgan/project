@@ -10,7 +10,7 @@ import { catchError, map, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ProductService {
-
+  BASE_URL = 'http://localhost:8000'
   constructor( private http: HttpClient) { }
   private productsUrl = 'api/products';  
   private categoriesUrl = 'api/categories';  
@@ -29,7 +29,7 @@ export class ProductService {
     ); 
   }
   getCategory(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.categoriesUrl);
+    return this.http.get<Category[]>( `${this.BASE_URL}/api/categories`)
   }
 
   getCategories(id: number): Observable<Category> {

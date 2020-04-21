@@ -20,6 +20,7 @@ class Product(models.Model):
     sale = models.BooleanField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
 
+
     def to_json(self):
         return {
             'id': self.id,
@@ -37,6 +38,7 @@ class User(models.Model):
     lastName = models.CharField(max_length=300)
     address = models.CharField(max_length=300)
     phone = models.CharField(max_length=300)
+    users = models.Manager()
 
 
 
@@ -52,9 +54,18 @@ class User(models.Model):
 
         }
 
+class MyManager(models.Manager):
+    def for_user(self, user):
+        return self.filter(username=user)
+
+
 class Order(models.Model):
-    username =  models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
+    username = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
     items = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='items')
+    my_orders = MyManager()
+
+    def __str__(self):
+        return self.items.name
 
     def to_json(self):
         return{
