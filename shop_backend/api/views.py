@@ -55,9 +55,9 @@ def products_list(request):
 
 #CRUD AND SERIALIZER DONE
 @api_view(['GET', 'PUT', 'DELETE'])
-def product_detail(request, category_id):
+def product_detail(request, product_id):
     try:
-        products = Product.objects.get(id=category_id)
+        products = Product.objects.get(id=product_id)
     except Product.DoesNotExist as e:
         return Response({'error': str(e)})
     if request.method == 'GET':
