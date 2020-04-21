@@ -5,15 +5,11 @@ from rest_framework.response import Response
 from api.models import Category, Product, Order, User
 from api.serializers import CategorySerializer, ProductSerializer, OrderSerializer, UserSerializer
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> parent of e391a960... urls added, category detail added
 # CRUD and Serializer done
-=======
+
 #CRUD and Serializer done
->>>>>>> parent of d3a78af7... data for Category/Product/User
+
 @api_view(['GET', 'POST'])
 def category_list(request):
     if request.method == 'GET':
@@ -28,12 +24,9 @@ def category_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response({'error': serializer.errors}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-<<<<<<< HEAD
 
-# GET and SERIALIZER
-=======
 #GET and SERIALIZER
->>>>>>> parent of d3a78af7... data for Category/Product/User
+
 @api_view(['GET'])
 def products_by_category(request, category_id):
     try:
@@ -100,25 +93,32 @@ class OrdersListAPIView(APIView):
         return Response({'error': serializer.errors},
                         status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-<<<<<<< HEAD
 
-<<<<<<< HEAD
-=======
-#user
->>>>>>> parent of d3a78af7... data for Category/Product/User
-
-=======
->>>>>>> parent of e391a960... urls added, category detail added
 # user
 
 class UserAPIView(APIView):
-    def get_object(self, id):
-        try:
-            return User.objects.get(id=id)
-        except User.DoesNotExist as e:
-            return Response({'error': str(e)})
+    def get(self, request):
+        users = User.objects.all()
+        serializer = UserSerializer(users, many=True)
 
-    def get(self, request, id):
-        user = self.get_object(id)
-        serializer = UserSerializer(user)
         return Response(serializer.data)
+    def post(self, request):
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response({'error': serializer.errors},
+                        status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+class UserDetailsAPIView(APIView):
+        def get_object(self, id):
+            try:
+                return User.objects.get(id=id)
+            except User.DoesNotExist as e:
+                return Response({'error': str(e)})
+
+        def get(self, request, id):
+            user = self.get_object(id)
+            serializer = UserSerializer(user)
+            return Response(serializer.data)

@@ -1,4 +1,3 @@
-from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
 
@@ -55,7 +54,7 @@ class User(models.Model):
 
 class Order(models.Model):
     username =  models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
-    items = ArrayField(models.IntegerField(), default=list)
+    items = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='items')
 
     def to_json(self):
         return{

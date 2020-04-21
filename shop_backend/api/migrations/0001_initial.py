@@ -44,12 +44,5 @@ class Migration(migrations.Migration):
                 ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='products', to='api.Category')),
             ],
         ),
-        migrations.CreateModel(
-            name='Order',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('items', django.contrib.postgres.fields.ArrayField(base_field=models.IntegerField(), default=list, size=None)),
-                ('username', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='orders', to='api.User')),
-            ],
-        ),
+
     ]
