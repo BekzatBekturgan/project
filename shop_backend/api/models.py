@@ -20,6 +20,7 @@ class Product(models.Model):
     sale = models.BooleanField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
 
+
     def to_json(self):
         return {
             'id': self.id,
@@ -37,6 +38,7 @@ class User(models.Model):
     lastName = models.CharField(max_length=300)
     address = models.CharField(max_length=300)
     phone = models.CharField(max_length=300)
+    users = models.Manager()
 
 
 

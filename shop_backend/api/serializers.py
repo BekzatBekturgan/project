@@ -30,11 +30,8 @@ class OrderSerializer(serializers.ModelSerializer):
     id=serializers.IntegerField(read_only=True)
     class Meta:
         model = Order
-<<<<<<< HEAD
         fields = ('id', 'username', 'items')
-=======
-        fields = '__all__'
->>>>>>> 73764aa0e73c2fbf9391a4cb0ff26216734bdd08
+
 
 
 
