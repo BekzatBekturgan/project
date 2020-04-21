@@ -2,6 +2,7 @@ from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
 
+
 class Category(models.Model):
     name = models.CharField(max_length=500)
 
@@ -30,7 +31,6 @@ class Product(models.Model):
             'sale': self.sale
         }
 
-
 class User(models.Model):
     username = models.CharField(max_length=300)
     password = models.CharField(max_length=300)
@@ -38,6 +38,8 @@ class User(models.Model):
     lastName = models.CharField(max_length=300)
     address = models.CharField(max_length=300)
     phone = models.CharField(max_length=300)
+
+
 
     def to_json(self):
         return {
@@ -51,13 +53,12 @@ class User(models.Model):
 
         }
 
-
 class Order(models.Model):
-    username = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
+    username =  models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
     items = ArrayField(models.IntegerField(), default=list)
 
     def to_json(self):
-        return {
+        return{
             'id': self.id,
             'username': self.username,
             'items': self.items

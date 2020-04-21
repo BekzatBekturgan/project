@@ -5,7 +5,11 @@ from rest_framework.response import Response
 from api.models import Category, Product, Order, User
 from api.serializers import CategorySerializer, ProductSerializer, OrderSerializer, UserSerializer
 
+<<<<<<< HEAD
 # CRUD and Serializer done
+=======
+#CRUD and Serializer done
+>>>>>>> parent of d3a78af7... data for Category/Product/User
 @api_view(['GET', 'POST'])
 def category_list(request):
     if request.method == 'GET':
@@ -20,6 +24,7 @@ def category_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response({'error': serializer.errors}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+<<<<<<< HEAD
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def category_detail(request, category_id):
@@ -45,6 +50,9 @@ def category_detail(request, category_id):
 
 
 # GET and SERIALIZER
+=======
+#GET and SERIALIZER
+>>>>>>> parent of d3a78af7... data for Category/Product/User
 @api_view(['GET'])
 def products_by_category(request, category_id):
     try:
@@ -57,8 +65,7 @@ def products_by_category(request, category_id):
         serializer = ProductSerializer(products, many=True)
         return Response(serializer.data)
 
-
-# CRUD AND SERIALIZER DONE
+#CRUD AND SERIALIZER DONE
 @api_view(['GET', 'POST'])
 def products_list(request):
     if request.method == 'GET':
@@ -72,8 +79,7 @@ def products_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response({'error': serializer.errors}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-
-# CRUD AND SERIALIZER DONE
+#CRUD AND SERIALIZER DONE
 @api_view(['GET', 'PUT', 'DELETE'])
 def product_detail(request, product_id):
     try:
@@ -96,7 +102,7 @@ def product_detail(request, product_id):
         return Response({'deleted': True})
 
 
-# order
+#order
 
 class OrdersListAPIView(APIView):
     def get(self, request):
@@ -113,18 +119,21 @@ class OrdersListAPIView(APIView):
         return Response({'error': serializer.errors},
                         status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+<<<<<<< HEAD
 
+=======
+#user
+>>>>>>> parent of d3a78af7... data for Category/Product/User
 
 # user
 class UserAPIView(APIView):
-    # def get_object(self, id):
-    #     try:
-    #         return User.objects.get(id=id)
-    #     except User.DoesNotExist as e:
-    #         return Response({'error': str(e)})
+    def get_object(self, id):
+        try:
+            return User.objects.get(id=id)
+        except User.DoesNotExist as e:
+            return Response({'error': str(e)})
 
-    def get(self, request):
-        #user = self.get_object(user_id)
-        user = User.objects.all()
-        serializer = UserSerializer(user, many=True)
+    def get(self, request, id):
+        user = self.get_object(id)
+        serializer = UserSerializer(user)
         return Response(serializer.data)
