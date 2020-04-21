@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from api.models import Category, Product, Order, User
+from django.contrib.auth import authenticate
+from rest_framework import exceptions
 
 
 class CategorySerializer(serializers.Serializer):
@@ -38,18 +40,18 @@ class UserSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     username = serializers.CharField()
     password = serializers.CharField()
-    firstName = serializers.CharField()
-    lastName = serializers.CharField()
-    address = serializers.CharField()
-    phone = serializers.CharField()
+    # firstName = serializers.CharField()
+    # lastName = serializers.CharField()
+    # address = serializers.CharField()
+    # phone = serializers.CharField()
 
     def create(self, validated_data):
         user = User.objects.create(username=validated_data.get('username'),
                                    password=validated_data.get('password'),
-                                   firstName=validated_data.get('firstName'),
-                                   lastName=validated_data.get('lastName'),
-                                   address=validated_data.get('address'),
-                                   phone=validated_data.get('phone'),
+                                   # firstName=validated_data.get('firstName'),
+                                   # lastName=validated_data.get('lastName'),
+                                   # address=validated_data.get('address'),
+                                   # phone=validated_data.get('phone'),
                                    )
 
         return user
@@ -63,3 +65,49 @@ class UserSerializer(serializers.Serializer):
         instance.phone = validated_data.get('phone', instance.phone)
         instance.save()
         return instance
+
+    def validate(self, data):
+        username = data.get("username", "")
+        password = data.get("password", "")
+
+        if username and password:
+            user = authenticate(username=username, password=password)
+            if user:
+                if user.is_active:
+                    data["user"] = user
+                else:
+                    msg = "User is deactivated."
+                    raise exceptions.ValidationError(msg)
+            else:
+                msg = "Unable to login with given credentials."
+                raise exceptions.ValidationError(msg)
+        else:
+            msg = "Must provide username and password both."
+            raise exceptions.ValidationError(msg)
+        return data
+
+
+
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField()
+
+    def validate(self, data):
+        username = data.get("username", "")
+        password = data.get("password", "")
+
+        if username and password:
+            user = authenticate(username=username, password=password)
+            if user:
+                if user.is_active:
+                    data["user"] = user
+                else:
+                    msg = "User is deactivated."
+                    raise exceptions.ValidationError(msg)
+            else:
+                msg = "Unable to login with given credentials."
+                raise exceptions.ValidationError(msg)
+        else:
+            msg = "Must provide username and password both."
+            raise exceptions.ValidationError(msg)
+        return data

@@ -1,2 +1,3 @@
+djangorestframework
 Django~=2.2.4
 django_cors_headers
