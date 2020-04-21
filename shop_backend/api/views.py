@@ -5,7 +5,11 @@ from rest_framework.response import Response
 from api.models import Category, Product, Order, User
 from api.serializers import CategorySerializer, ProductSerializer, OrderSerializer, UserSerializer
 
+
 # CRUD and Serializer done
+
+#CRUD and Serializer done
+
 @api_view(['GET', 'POST'])
 def category_list(request):
     if request.method == 'GET':
@@ -21,30 +25,8 @@ def category_list(request):
         return Response({'error': serializer.errors}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])
-def category_detail(request, category_id):
-    try:
-        category = Category.objects.get(id=category_id)
-    except Category.DoesNotExist as e:
-        return Response({'error': str(e)})
+#GET and SERIALIZER
 
-    if request.method == 'GET':
-        serializer = CategorySerializer(category)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = CategorySerializer(instance=category, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response({'error': serializer.errors})
-
-    elif request.method == 'DELETE':
-        category.delete()
-        return Response({'deleted': True})
-
-
-# GET and SERIALIZER
 @api_view(['GET'])
 def products_by_category(request, category_id):
     try:
@@ -57,8 +39,7 @@ def products_by_category(request, category_id):
         serializer = ProductSerializer(products, many=True)
         return Response(serializer.data)
 
-
-# CRUD AND SERIALIZER DONE
+#CRUD AND SERIALIZER DONE
 @api_view(['GET', 'POST'])
 def products_list(request):
     if request.method == 'GET':
@@ -72,12 +53,11 @@ def products_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response({'error': serializer.errors}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-
-# CRUD AND SERIALIZER DONE
+#CRUD AND SERIALIZER DONE
 @api_view(['GET', 'PUT', 'DELETE'])
-def product_detail(request, product_id):
+def product_detail(request, category_id):
     try:
-        products = Product.objects.get(id=product_id)
+        products = Product.objects.get(id=category_id)
     except Product.DoesNotExist as e:
         return Response({'error': str(e)})
     if request.method == 'GET':
@@ -96,7 +76,7 @@ def product_detail(request, product_id):
         return Response({'deleted': True})
 
 
-# order
+#order
 
 class OrdersListAPIView(APIView):
     def get(self, request):
@@ -114,17 +94,34 @@ class OrdersListAPIView(APIView):
                         status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-
 # user
-class UserAPIView(APIView):
-    # def get_object(self, id):
-    #     try:
-    #         return User.objects.get(id=id)
-    #     except User.DoesNotExist as e:
-    #         return Response({'error': str(e)})
 
+class UserAPIView(APIView):
     def get(self, request):
-        #user = self.get_object(user_id)
-        user = User.objects.all()
-        serializer = UserSerializer(user, many=True)
+        users = User.objects.all()
+        serializer = UserSerializer(users, many=True)
+
         return Response(serializer.data)
+
+    def post(self, request):
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response({'error': serializer.errors},
+                        status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
+
+class UserDetailsAPIView(APIView):
+        def get_object(self, id):
+            try:
+                return User.objects.get(id=id)
+            except User.DoesNotExist as e:
+                return Response({'error': str(e)})
+
+        def get(self, request, id):
+            user = self.get_object(id)
+            serializer = UserSerializer(user)
+            return Response(serializer.data)
