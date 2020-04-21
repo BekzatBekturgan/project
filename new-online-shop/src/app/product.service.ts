@@ -16,32 +16,26 @@ export class ProductService {
   private categoriesUrl = 'api/categories';  
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.productsUrl)
-    .pipe(
-      catchError(this.handleError<Product[]>('getProducts', []))
-    );
+    return this.http.get<Product[]>( `${this.BASE_URL}/api/products`)
   }
 
   getProduct(id: number): Observable<Product> {
-    const url = `${this.productsUrl}/${id}`;
-    return this.http.get<Product>(url).pipe(
-      catchError(this.handleError<Product>(`getProduct id=${id}`))
-    ); 
+    return this.http.get<Product>(`${this.BASE_URL}/api/products/${id}/`);
   }
+
   getCategory(): Observable<Category[]> {
     return this.http.get<Category[]>( `${this.BASE_URL}/api/categories`)
   }
 
   getCategories(id: number): Observable<Category> {
-    const url = `${this.categoriesUrl}/${id}`;
-    return this.http.get<Category>(url).pipe(
-    catchError(this.handleError<Category>(`getCategory id=${id}`))
-  );
+    return this.http.get<Category>(`${this.BASE_URL}/api/categories/${id}/`);
+
   }
  
 
   getProductofC(categoryId: number): Observable<Product[]> {
     return of(PRODUCTS.filter(product => product.categoryId === categoryId));
+    //return this.http.get<Product[]>(`${this.BASE_URL}/api/categories/${categoryId}/`);
   }
 
 
