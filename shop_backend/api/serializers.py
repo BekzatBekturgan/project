@@ -27,9 +27,10 @@ class ProductSerializer(serializers.ModelSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
+    id=serializers.IntegerField(read_only=True)
     class Meta:
         model = Order
-        fields = '_all_'
+        fields = ('id', 'username', 'items')
 
 
 
