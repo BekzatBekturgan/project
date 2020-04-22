@@ -8,8 +8,9 @@ import { ProductService } from './product.service'
 export class AppComponent {
   title = 'WATCH STORE';
   logged=false;
-  public username = "";
+  username = "";
   password = "";
+  public user_name="";
 
   constructor(private productService: ProductService){}
   ngOnInit(){
@@ -24,6 +25,7 @@ export class AppComponent {
       this.productService.login(this.username,this.password).subscribe( res=>{
         localStorage.setItem('token', res.token);
         this.logged=true;
+        this.user_name=this.username;
         this.username='';
         this.password='';
       })
