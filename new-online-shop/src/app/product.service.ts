@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { PRODUCTS } from './products';
-import { Product } from './product';
-import { Category } from './category';
+// import { PRODUCTS } from './products';
+// import { Product } from './product';
+// import { Category } from './category';
+import {CATEGORIES} from './categories'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { LoginResponse} from './models'
+import { ProductModel, CategoryModel} from './models'
 
 @Injectable({
   providedIn: 'root'
@@ -15,27 +18,27 @@ export class ProductService {
   private productsUrl = 'api/products';  
   private categoriesUrl = 'api/categories';  
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>( `${this.BASE_URL}/api/products`)
+  getProducts(): Observable<ProductModel[]> {
+    return this.http.get<ProductModel[]>( `${this.BASE_URL}/api/products`)
   }
 
-  getProduct(id: number): Observable<Product> {
-    return this.http.get<Product>(`${this.BASE_URL}/api/products/${id}/`);
+  getProduct(id: number): Observable<ProductModel> {
+    return this.http.get<ProductModel>(`${this.BASE_URL}/api/products/${id}/`);
   }
 
-  getCategory(): Observable<Category[]> {
-    return this.http.get<Category[]>( `${this.BASE_URL}/api/categories`)
+  getCategory(): Observable<CategoryModel[]> {
+     return this.http.get<CategoryModel[]>( `${this.BASE_URL}/api/categories`)
+    
   }
 
-  getCategories(id: number): Observable<Category> {
-    return this.http.get<Category>(`${this.BASE_URL}/api/categories/${id}/`);
+  getCategories(id: number): Observable<CategoryModel> {
+    return this.http.get<CategoryModel>(`${this.BASE_URL}/api/categories/${id}/`);
 
   }
  
 
-  getProductofC(categoryId: number): Observable<Product[]> {
-    return of(PRODUCTS.filter(product => product.categoryId === categoryId));
-    //return this.http.get<Product[]>(`${this.BASE_URL}/api/categories/${categoryId}/`);
+  getProductofC(categoryId: number): Observable<ProductModel[]> {
+    return this.http.get<ProductModel[]>(`${this.BASE_URL}/api/categories/${categoryId}/products`);
   }
 
 
@@ -48,13 +51,22 @@ export class ProductService {
     };
   }
   
-  searchHeroes(term: string): Observable<Product[]> {
-    if (!term.trim()) {
-      return of([]);
-    }
-    return this.http.get<Product[]>(`${this.productsUrl}/?name=${term}`).pipe(
-    catchError(this.handleError<Product[]>('searchProducts', []))
-  );
-}
+  // searchHeroes(term: string): Observable<Product[]> {
+  //   if (!term.trim()) {
+  //     return of([]);
+  //   }
+  //   return this.http.get<Product[]>(`${this.productsUrl}/?name=${term}`).pipe(
+  //   catchError(this.handleError<Product[]>('searchProducts', []))
+  //   );
+  // }
+
+  login(username, password): Observable<LoginResponse>{
+    return this.http.post<LoginResponse>(`${this.BASE_URL}/api/login/`, {
+      username: username,
+      password: password
+    })
+  }
+
+
 }
 

@@ -1,14 +1,19 @@
 export class ProductModel{
     id: number;
-    category:number;
     name: string;
     price: number;
     description: string;
-    image:any;
+    image:string;
     sale:boolean;
+    category:number;
+    
 }
 
 export class CategoryModel{
     id: number;
     name: string;
+}
+
+export class LoginResponse{
+    token:string;
 }

@@ -12,12 +12,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CartComponent } from './cart/cart.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { HttpClientModule }    from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './in-memory-data.service';
 import { ProductSearchComponent } from './product-search/product-search.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { BottomBarComponent } from './bottom-bar/bottom-bar.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+// import {AppInterceptor} from "./appinterceptor";
 
 
 
@@ -37,14 +36,11 @@ import { BottomBarComponent } from './bottom-bar/bottom-bar.component';
    imports: [
       BrowserModule,
       FormsModule,
+      HttpClientModule,
       AppRoutingModule,
       SliderModule,
       BrowserAnimationsModule,
       ReactiveFormsModule,
-      HttpClientModule,
-      HttpClientInMemoryWebApiModule.forRoot(
-         InMemoryDataService, { dataEncapsulation: false }
-       )
    ],
    providers: [],
    bootstrap: [

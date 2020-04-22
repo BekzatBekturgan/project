@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService} from '../product.service'
-import {Category} from '../category'
-import {Product} from '../product'
+import { ProductModel, CategoryModel} from '../models'
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
-  public categories: Category[];
-  public products: Product[];
+  public categories: CategoryModel[]=[];
+  public products: ProductModel[]=[];
   public inputText: string = "";
   constructor(private productService: ProductService) { }
 

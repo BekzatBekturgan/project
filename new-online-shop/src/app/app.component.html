@@ -1,3 +1,10 @@
+<div *ngIf="!logged">
+  <h1>Login Form</h1>
+  <p><input type="text" [(ngModel)]="username"></p>
+  <p><input type="text" [(ngModel)]="password"></p>
+  <button (click)="login()">Login</button>
+</div>
+<div *ngIf="logged">
 <div class="container">
   <h1>{{title}}</h1>
   <div class="button-container">
@@ -8,3 +15,4 @@
   </div>
 </div>
 <router-outlet></router-outlet>
+</div>
