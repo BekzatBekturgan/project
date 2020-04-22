@@ -1,5 +1,6 @@
 from django.urls import path
-from api.views import category_list, products_list, UserAPIView, product_detail, products_by_category, OrdersListAPIView, LoginView, LogoutView
+from rest_framework_jwt.views import obtain_jwt_token
+
 from api.views import category_list, products_list, UserAPIView, product_detail, products_by_category, OrdersListAPIView
 
 urlpatterns = [
@@ -12,8 +13,7 @@ urlpatterns = [
      path('categories/<int:category_id>/products', products_by_category),
 
      path('orders/', OrdersListAPIView.as_view()),
-     path('login/', LoginView.as_view()),
-     path('logout/', LogoutView.as_view()),
-
-
+     path('login/', obtain_jwt_token),
+     # path('login/', LoginView.as_view()),
+     # path('logout/', LogoutView.as_view()),
 ]

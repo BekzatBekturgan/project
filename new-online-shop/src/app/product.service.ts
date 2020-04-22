@@ -47,6 +47,7 @@ export class ProductService {
     return of(result as T);
     };
   }
+  
   searchHeroes(term: string): Observable<Product[]> {
     if (!term.trim()) {
       return of([]);

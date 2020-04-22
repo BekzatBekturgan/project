@@ -1,15 +1,19 @@
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from api.models import Category, Product, Order, User
-from api.serializers import CategorySerializer, ProductSerializer, OrderSerializer, UserSerializer, LoginSerializer
+from api.models import Category, Product, Order
+from api.serializers import CategorySerializer, ProductSerializer, OrderSerializer, UserSerializer
 from django.contrib.auth import login as django_login, logout as django_logout
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
+from django.contrib.auth.models import User
+from rest_framework.permissions import IsAuthenticated
+
 
 #CRUD and Serializer done
 
+@permission_classes([IsAuthenticated])
 @api_view(['GET', 'POST'])
 def category_list(request):
     if request.method == 'GET':
@@ -103,16 +107,6 @@ class UserAPIView(APIView):
 
         return Response(serializer.data)
 
-    def post(self, request):
-        serializer = UserSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response({'error': serializer.errors},
-                        status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-
-
 
 class UserDetailsAPIView(APIView):
         def get_object(self, id):
@@ -127,19 +121,19 @@ class UserDetailsAPIView(APIView):
             return Response(serializer.data)
 
 
-class LoginView(APIView):
-    def post(self, request):
-        serializer = UserSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data["user"]
-        django_login(request, user)
-        token, created = Token.objects.get_or_create(user=user)
-        return Response({"token": token.key}, status=200)
-
-
-class LogoutView(APIView):
-    authentication_classes = (TokenAuthentication, )
-
-    def post(self, request):
-        django_logout(request)
-        return Response({"message": "You've logged out"}, status=204)
+# class LoginView(APIView):
+#     def post(self, request):
+#         serializer = UserSerializer(data=request.data)
+#         serializer.is_valid(raise_exception=True)
+#         user = serializer.validated_data["user"]
+#         django_login(request, user)
+#         token, created = Token.objects.get_or_create(user=user)
+#         return Response({"token": token.key}, status=200)
+#
+#
+# class LogoutView(APIView):
+#     authentication_classes = (TokenAuthentication, )
+#
+#     def post(self, request):
+#         django_logout(request)
+#         return Response({"message": "You've logged out"}, status=204)

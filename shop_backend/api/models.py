@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -31,28 +31,28 @@ class Product(models.Model):
             'sale': self.sale
         }
 
-class User(models.Model):
-    username = models.CharField(max_length=300)
-    password = models.CharField(max_length=300)
-    firstName = models.CharField(max_length=300)
-    lastName = models.CharField(max_length=300)
-    address = models.CharField(max_length=300)
-    phone = models.CharField(max_length=300)
-    users = models.Manager()
-
-
-
-    def to_json(self):
-        return {
-            'id': self.id,
-            'username': self.username,
-            'password': self.password,
-            'firstName': self.firstName,
-            'lastName': self.lastName,
-            'address': self.address,
-            'phone': self.phone,
-
-        }
+# class User(models.Model):
+#     username = models.CharField(max_length=300)
+#     password = models.CharField(max_length=300)
+#     firstName = models.CharField(max_length=300)
+#     lastName = models.CharField(max_length=300)
+#     address = models.CharField(max_length=300)
+#     phone = models.CharField(max_length=300)
+#     users = models.Manager()
+#
+#
+#
+#     def to_json(self):
+#         return {
+#             'id': self.id,
+#             'username': self.username,
+#             'password': self.password,
+#             'firstName': self.firstName,
+#             'lastName': self.lastName,
+#             'address': self.address,
+#             'phone': self.phone,
+#
+#         }
 
 class MyManager(models.Manager):
     def for_user(self, user):
