@@ -5,7 +5,7 @@ import {
    debounceTime, distinctUntilChanged, switchMap
  } from 'rxjs/operators';
 
-import { Product } from '../product';
+import { ProductModel } from '../models';
 import { ProductService } from '../product.service';
 
 
@@ -16,7 +16,7 @@ import { ProductService } from '../product.service';
 })
 export class ProductSearchComponent implements OnInit {
   inputText: String;
-  products$: Observable<Product[]>;
+  products$: Observable<ProductModel[]>;
   private searchTerms = new Subject<string>();
   constructor(private productService: ProductService) {}
   // Push a search term into the observable stream.

@@ -4,9 +4,6 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from api.models import Category, Product, Order
 from api.serializers import CategorySerializer, ProductSerializer, OrderSerializer, UserSerializer
-from django.contrib.auth import login as django_login, logout as django_logout
-from rest_framework.authtoken.models import Token
-from rest_framework.authentication import TokenAuthentication
 from django.contrib.auth.models import User
 from rest_framework.permissions import IsAuthenticated
 
