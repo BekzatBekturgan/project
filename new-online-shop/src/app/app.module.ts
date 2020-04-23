@@ -16,7 +16,7 @@ import { ProductSearchComponent } from './product-search/product-search.componen
 import { QuestionsComponent } from './questions/questions.component';
 import { BottomBarComponent } from './bottom-bar/bottom-bar.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-// import {AppInterceptor} from "./appinterceptor";
+import {AppInterceptor} from "./appinterceptor";
 
 
 
@@ -42,7 +42,13 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
       BrowserAnimationsModule,
       ReactiveFormsModule,
    ],
-   providers: [],
+   providers: [
+      {
+         provide: HTTP_INTERCEPTORS,
+         useClass: AppInterceptor,
+         multi: true
+       }
+   ],
    bootstrap: [
       AppComponent
    ]

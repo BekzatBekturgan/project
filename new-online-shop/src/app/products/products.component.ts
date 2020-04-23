@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService} from '../product.service'
-import {Product} from '../product'
 import { Location } from '@angular/common';
+<<<<<<< HEAD
+import { ProductModel } from '../models'
+=======
+import { ProductModel} from '../models'
+>>>>>>> d6b2cf714877b5aa01fd163de151ab053bcebc45
 
 @Component({
   selector: 'app-products',
@@ -10,7 +14,11 @@ import { Location } from '@angular/common';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  products: Product[];
+<<<<<<< HEAD
+  products: ProductModel[] = [];
+=======
+  products: ProductModel[]=[];
+>>>>>>> d6b2cf714877b5aa01fd163de151ab053bcebc45
   constructor(
     private location: Location,
     private productService: ProductService,
