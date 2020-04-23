@@ -60,4 +60,4 @@ class OrderSerializer(serializers.ModelSerializer):
     id=serializers.IntegerField(read_only=True)
     class Meta:
         model = Order
-        fields = ('id', 'username', 'items')
+        fields = ('id', 'user', 'items')

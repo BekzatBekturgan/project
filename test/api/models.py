@@ -68,15 +68,16 @@ class Product(models.Model):
         }
 
 
+
 class MyManager(models.Manager):
-    def for_user(self, user):
-        return self.filter(username=user)
+    def get_users_orders(self, user):
+        return self.filter(user=user)
 
 
 class Order(models.Model):
-    username = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
     items = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='items')
-    my_orders = MyManager()
+    objects = MyManager()
 
     def __str__(self):
         return self.items.name
@@ -84,6 +85,6 @@ class Order(models.Model):
     def to_json(self):
         return{
             'id': self.id,
-            'username': self.username,
+            'username': self.user,
             'items': self.items
         }

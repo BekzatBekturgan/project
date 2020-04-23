@@ -100,7 +100,8 @@ class UserDetailsAPIView(APIView):
 class OrdersListAPIView(APIView):
     def get(self, request):
         orders = Order.objects.all()
-        serializer = OrderSerializer(orders, many=True)
+        user_orders = Order.objects.get_users_orders(1)
+        serializer = OrderSerializer(user_orders, many=True)
 
         return Response(serializer.data)
 
