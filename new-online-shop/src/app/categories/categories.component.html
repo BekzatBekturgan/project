@@ -13,7 +13,7 @@
   <div *ngFor="let product of products" class="sales-products">
     <div *ngIf="product.sale==true" class="img-container"> 
       <a routerLink="/products/{{product.id}}">
-        <img class="best-item" src="{{product.Image[0]}}" width="300" height="240" alt="suret">
+        <img class="best-item" src="{{product.image}}" width="300" height="240" alt="suret">
       </a>
     </div>
   </div> 

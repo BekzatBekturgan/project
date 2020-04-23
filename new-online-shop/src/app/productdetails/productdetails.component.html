@@ -6,12 +6,7 @@
 </div>
 
 <div class="container-slider">
-<angular-image-slider
-  [autoRotate]="true"
-  [autoRotateAfter]="5000"
-  [autoRotateRight]="true"
-  [images]=product.Image
-></angular-image-slider>
+  <img  src="{{product.image}}" width="300" height="240" alt="suret">
 </div>
 <div class="share-buttons">
   <button (click)="share(1)" style="background-color: black; border-color: black;">

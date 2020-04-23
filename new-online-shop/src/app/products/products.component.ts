@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService} from '../product.service'
-import {Product} from '../product'
 import { Location } from '@angular/common';
+import { ProductModel} from '../models'
 
 @Component({
   selector: 'app-products',
@@ -10,7 +10,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  products: Product[];
+  products: ProductModel[]=[];
   constructor(
     private location: Location,
     private productService: ProductService,

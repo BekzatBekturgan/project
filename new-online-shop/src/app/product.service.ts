@@ -1,47 +1,40 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { PRODUCTS } from './products';
-import { Product } from './product';
-import { Category } from './category';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { LoginResponse} from './models'
+import { ProductModel, CategoryModel} from './models'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-
+  BASE_URL = 'http://localhost:8000'
   constructor( private http: HttpClient) { }
   private productsUrl = 'api/products';  
   private categoriesUrl = 'api/categories';  
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.productsUrl)
-    .pipe(
-      catchError(this.handleError<Product[]>('getProducts', []))
-    );
+  getProducts(): Observable<ProductModel[]> {
+    return this.http.get<ProductModel[]>( `${this.BASE_URL}/api/products`)
   }
 
-  getProduct(id: number): Observable<Product> {
-    const url = `${this.productsUrl}/${id}`;
-    return this.http.get<Product>(url).pipe(
-      catchError(this.handleError<Product>(`getProduct id=${id}`))
-    ); 
-  }
-  getCategory(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.categoriesUrl);
+  getProduct(id: number): Observable<ProductModel> {
+    return this.http.get<ProductModel>(`${this.BASE_URL}/api/products/${id}`);
   }
 
-  getCategories(id: number): Observable<Category> {
-    const url = `${this.categoriesUrl}/${id}`;
-    return this.http.get<Category>(url).pipe(
-    catchError(this.handleError<Category>(`getCategory id=${id}`))
-  );
+  getCategory(): Observable<CategoryModel[]> {
+     return this.http.get<CategoryModel[]>( `${this.BASE_URL}/api/categories/`)
+    
   }
+
+  // getCategories(id: number): Observable<CategoryModel> {
+  //   return this.http.get<CategoryModel>(`${this.BASE_URL}/api/categories/${id}/`);
+
+  // }
  
 
-  getProductofC(categoryId: number): Observable<Product[]> {
-    return of(PRODUCTS.filter(product => product.categoryId === categoryId));
+  getProductofC(categoryId: number): Observable<ProductModel[]> {
+    return this.http.get<ProductModel[]>(`${this.BASE_URL}/api/categories/${categoryId}/products`);
   }
 
 
@@ -53,13 +46,23 @@ export class ProductService {
     return of(result as T);
     };
   }
-  searchHeroes(term: string): Observable<Product[]> {
+  
+  searchHeroes(term: string): Observable<ProductModel[]> {
     if (!term.trim()) {
       return of([]);
     }
-    return this.http.get<Product[]>(`${this.productsUrl}/?name=${term}`).pipe(
-    catchError(this.handleError<Product[]>('searchProducts', []))
-  );
-}
+    return this.http.get<ProductModel[]>(`${this.BASE_URL}/api/products/?name=${term}`).pipe(
+    catchError(this.handleError<ProductModel[]>('searchProducts', []))
+    );
+  }
+
+  login(username, password): Observable<LoginResponse>{
+    return this.http.post<LoginResponse>(`${this.BASE_URL}/api/login/`, {
+      username: username,
+      password: password
+    })
+  }
+
+
 }
 

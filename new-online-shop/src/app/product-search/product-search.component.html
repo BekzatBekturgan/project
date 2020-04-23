@@ -1,6 +1,5 @@
 <div id="search-component">
     <h4><label for="search-box">Product Search</label></h4>
-  
     <input #searchBox id="search-box" name = "inputText" (input)="search(searchBox.value)" [(ngModel)]="inputText"/>
     <p>Showed results of <span class = "input-text">
       {{inputText}}

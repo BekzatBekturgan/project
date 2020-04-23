@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import {ProductService} from '../product.service';
-import {Product} from '../product';
+import { ProductService } from '../product.service';
+import { ProductModel} from '../models'
 import { CartService } from '../cart.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-productdetails',
@@ -12,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./productdetails.component.css']
 })
 export class ProductdetailsComponent implements OnInit {
-  product: Product;
+  product: ProductModel;
   share(num) {
     if(num==1){
       window.open("https://telegram.me/share/url?url=http://localhost:4200"+this.location.path()+"&text=<>", "_blank");
