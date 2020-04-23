@@ -1,0 +1,42 @@
+p{
+    text-align: center;
+    font-size: larger;
+}
+button{
+    font-size: large;
+    border: brown solid 5px;
+    background-color: black;
+    color: blanchedalmond;
+}
+
+.flex-container > div {
+    border: white solid;
+    background-color: #f1f1f1;
+    margin: 10px;
+    padding:10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    color: black;
+}
+.flex-container {
+    display: flex;
+    justify-content: center;
+    
+}
+.image{
+    width:190px;
+    height: 210px;
+}
+.image:hover{
+    border: 2px solid black;
+}
+.containers{
+    border: whitesmoke solid;
+    width: 500px;
+    height: 650px;
+    margin-left: 300px;
+}
+footer{
+    background-color:rgb(215, 237, 243);
+    padding:100px;
+}
