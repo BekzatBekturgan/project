@@ -1,7 +1,7 @@
 from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
-from api.models import  Category, Product
-from api.serializers import CategorySerializer, ProductSerializer, UserSerializer
+from api.models import  Category, Product, Order
+from api.serializers import CategorySerializer, ProductSerializer, UserSerializer, OrderSerializer
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -96,3 +96,18 @@ class UserDetailsAPIView(APIView):
             serializer = UserSerializer(user)
             return Response(serializer.data)
 
+
+class OrdersListAPIView(APIView):
+    def get(self, request):
+        orders = Order.objects.all()
+        serializer = OrderSerializer(orders, many=True)
+
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = OrderSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response({'error': serializer.errors},
+                        status=status.HTTP_500_INTERNAL_SERVER_ERROR)

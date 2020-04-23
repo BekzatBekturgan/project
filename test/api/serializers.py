@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from api.models import Category, Product
+from api.models import Category, Product, Order
 from django.contrib.auth.models import User
 
 
@@ -54,3 +54,10 @@ class UserSerializer(serializers.Serializer):
     #     instance.phone = validated_data.get('phone', instance.phone)
     #     instance.save()
     #     return instance
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    id=serializers.IntegerField(read_only=True)
+    class Meta:
+        model = Order
+        fields = ('id', 'username', 'items')
