@@ -1,5 +1,7 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from django.contrib.auth.models import User
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+
 from api.models import  Category, Product, Order
 from api.serializers import CategorySerializer, ProductSerializer, UserSerializer, OrderSerializer
 from rest_framework import status

@@ -10,9 +10,8 @@ urlpatterns = [
      path('categories/<int:category_id>/products/', products_by_category),
      path('products/', products_list),
      path('products/<int:product_id>', product_detail),
-     path('users', UserAPIView.as_view()),
+     path('users/', UserAPIView.as_view()),
      path('users/<int:id>', UserDetailsAPIView.as_view()),
      path('orders/', OrdersListAPIView.as_view()),
      path('login/', obtain_jwt_token),
-
 ]
