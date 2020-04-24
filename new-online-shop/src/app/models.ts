@@ -7,7 +7,8 @@ export class ProductModel{
     description: string;
     image:string;
     sale:boolean;
-    category:number;
+    categoryId:number;
+
     
 }
 

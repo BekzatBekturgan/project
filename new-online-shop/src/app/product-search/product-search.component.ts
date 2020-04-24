@@ -7,7 +7,7 @@ import {
 
 import { ProductModel } from '../models';
 import { ProductService } from '../product.service';
-
+import { ProductModel } from '../models'
 
 @Component({
   selector: 'app-product-search',
@@ -24,16 +24,16 @@ export class ProductSearchComponent implements OnInit {
     this.searchTerms.next(term);
   }
   ngOnInit(): void {
-    this.products$ = this.searchTerms.pipe(
-      // wait 300ms after each keystroke before considering the term
-      debounceTime(300),
+    // this.products$ = this.searchTerms.pipe(
+    //   // wait 300ms after each keystroke before considering the term
+    //   debounceTime(300),
 
-      // ignore new term if same as previous term
-      distinctUntilChanged(),
+    //   // ignore new term if same as previous term
+    //   distinctUntilChanged(),
 
-      // switch to new search observable each time the term changes
-      switchMap((term: string) => this.productService.searchHeroes(term)),
-    );
+    //   // switch to new search observable each time the term changes
+    //   switchMap((term: string) => this.productService.searchHeroes(term)),
+    // );
   }
 
 }

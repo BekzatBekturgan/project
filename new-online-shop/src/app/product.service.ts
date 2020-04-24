@@ -11,11 +11,11 @@ import { ProductModel, CategoryModel} from './models'
 export class ProductService {
   BASE_URL = 'http://localhost:8000'
   constructor( private http: HttpClient) { }
-  private productsUrl = 'api/products';  
-  private categoriesUrl = 'api/categories';  
+  //private productsUrl = 'api/products';  
+  //private categoriesUrl = 'api/categories';  
 
   getProducts(): Observable<ProductModel[]> {
-    return this.http.get<ProductModel[]>( `${this.BASE_URL}/api/products`)
+    return this.http.get<ProductModel[]>( `${this.BASE_URL}/api/products/`)
   }
 
   getProduct(id: number): Observable<ProductModel> {

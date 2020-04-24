@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
     this.userService.getUsers()
       .subscribe(users => this.users = users);
   }
-  onSubmit() {
+  onSubmit() {  
     this.submitted = true;
 
     // stop here if form is invalid

@@ -38,14 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'corsheaders',
     'rest_framework.authtoken',
 
     # 3-part libraries
 
     'rest_framework',
     'rest_framework_jwt',
-    'corsheaders',
+
 
     # own libraries
     'api'
