@@ -1,10 +1,7 @@
 from django.urls import path
 
 from api.views import category_list, products_list,products_by_category, product_detail, UserAPIView,UserDetailsAPIView, OrdersListAPIView
-
 from rest_framework_jwt.views import obtain_jwt_token
-
-
 urlpatterns = [
      path('categories/', category_list),
      path('categories/<int:category_id>/products/', products_by_category),

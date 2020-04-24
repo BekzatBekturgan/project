@@ -1,6 +1,6 @@
 from rest_framework.decorators import api_view, permission_classes
 from django.contrib.auth.models import User
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 
 from api.models import  Category, Product, Order
 from api.serializers import CategorySerializer, ProductSerializer, UserSerializer, OrderSerializer
@@ -8,11 +8,8 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-
-
-
-
 @api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def category_list(request):
     if request.method == 'GET':
         categories = Category.objects.all()
@@ -41,6 +38,7 @@ def products_by_category(request, category_id):
 
 
 @api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def products_list(request):
     if request.method == 'GET':
         products = Product.objects.all()
@@ -55,6 +53,7 @@ def products_list(request):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def product_detail(request, product_id):
     try:
         products = Product.objects.get(id=product_id)
@@ -100,6 +99,7 @@ class UserDetailsAPIView(APIView):
 
 
 class OrdersListAPIView(APIView):
+    permission_classes = (IsAuthenticated,)
     def get(self, request):
         orders = Order.objects.all()
         user_orders = Order.objects.get_users_orders(1)
