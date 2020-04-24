@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Input, Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
 import { Shipping } from '../shipping';
 @Component({
@@ -7,6 +7,7 @@ import { Shipping } from '../shipping';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+  
   items;
   model = new Shipping('', '', '', '', []);
   
