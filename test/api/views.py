@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 
 from api.models import  Category, Product, Order
-from api.serializers import CategorySerializer, ProductSerializer, UserSerializer, OrderSerializer
+from api.serializers import CategorySerializer, ProductSerializer, UserSerializer, OrderSerializer, ProductDetailSerializer
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -64,7 +64,7 @@ def product_detail(request, product_id):
         return Response(serializer.data)
 
     elif request.method == 'PUT':
-        serializer = ProductSerializer(instance=products, data=request.data)
+        serializer = ProductDetailSerializer(instance=products, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -114,3 +114,30 @@ class OrdersListAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response({'error': serializer.errors},
                         status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+class OrderDetailsAPIView(APIView):
+    def get_object(self, user):
+        try:
+            return Order.objects.get(user=user)
+        except Order.DoesNotExist as e:
+            return Response({'error': str(e)})
+
+    def get(self, request, user_id):
+        order = self.get_object(user_id)
+        serializer = OrderSerializer(order)
+        return Response(serializer.data)
+
+
+
+@api_view(['GET'])
+def orders_by_user(request, user_id):
+    try:
+        user = User.objects.get(id=user_id)
+    except User.DoesNotExist as e:
+        return Response({'error': str(e)})
+
+    if request.method == 'GET':
+        orders = user.orders.all()
+        serializer = OrderSerializer(orders, many=True)
+        return Response(serializer.data)

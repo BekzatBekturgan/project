@@ -21,11 +21,17 @@ class CategorySerializer(serializers.Serializer):
 
 class ProductSerializer(serializers.ModelSerializer):
 
-    category_id = serializers.IntegerField(write_only=True)
+    #category_id = serializers.IntegerField(write_only=True)
 
     class Meta:
         model = Product
         fields = '__all__'
+
+
+class ProductDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = ('name',)
 
 
 
