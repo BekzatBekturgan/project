@@ -1,66 +1,44 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
+import { Location } from '@angular/common';
 import {User} from '../User';
-import {UserService} from '../user.service'
+import {ProductService} from '../product.service'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
-  loading = false;
-  submitted = false;
-  returnUrl: string;
-  users: User[];
-  home = false;
-  constructor(
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private userService: UserService
-  ) { }
+  user: User;
+  logged=false;
+  username = "";
+  password = "";
+  id: any;
+  public user_name="";
 
-  ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-  });
-    this.getUsers();
-  } 
-
-  get f() { return this.loginForm.controls; }
-
-
-  getUsers(): void {
-    this.userService.getUsers()
-      .subscribe(users => this.users = users);
+  constructor(private productService: ProductService,
+              private location: Location,){}
+  ngOnInit(){
+    let token = localStorage.getItem('token');
+    if(token){
+      this.logged=true;
+    }
   }
-  onSubmit() {  
-    this.submitted = true;
-
-    // stop here if form is invalid
-    if (this.loginForm.invalid) {
-        return;
+  login(){
+      this.productService.login(this.username,this.password).subscribe( res=>{
+        localStorage.setItem('token', res.token);
+        this.logged=true;
+        this.username='';
+        this.password='';
+      })
     }
-    this.loading = true;
-    for(var user in this.users){
-      if(this.users[user].username === this.f.username.value && 
-        this.users[user].password === this.f.password.value){
-          window.alert('login is success');
-          this.home = true;
-          break;
-      }
+    logout(){
+      localStorage.clear();
+      this.logged = false;
     }
-    if(this.home == true){
-      this.router.navigateByUrl('/categories');
+   
+    goBack(): void {
+      this.location.back();
     }
-    else{
-      window.alert('wrong password or username');
-      this.loading = false;
-    }
-    
-  }
+  
 }
+
