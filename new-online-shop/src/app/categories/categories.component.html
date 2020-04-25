@@ -7,7 +7,7 @@
       </a>
     </li>
 </ul>
-<h2 style="color:cornsilk"> Welcome to our store {{inputText}} !!!</h2>
+<h2 style="color:cornsilk"> Welcome to our store {{user.username}}</h2>
 <div  class="sales">
   <h2>SALES</h2>
   <div *ngFor="let product of products" class="sales-products">
@@ -18,7 +18,7 @@
     </div>
   </div> 
 </div>
-<label>Please write your name </label>
-  <input type="text" [(ngModel)]="inputText">
+
+ 
 </div>
 <app-bottom-bar></app-bottom-bar>
