@@ -1,22 +1,10 @@
-<div *ngIf="!logged">
-  <div class="form-container">
-    <div class="login-container">
-      <h1>Login Form</h1>
-      <p><input type="text" [(ngModel)]="username"></p>
-      <p><input type="password" [(ngModel)]="password"></p>
-      <button (click)="login()" class="button-login">Login</button>
-    </div>
-  </div>
-</div>
-<div *ngIf="logged">
 <div class="container">
   <h1>{{title}}</h1>
   <div class="button-container">
     <a routerLink="categories" class="button"> Home</a>
     <a routerLink="aboutus" class="button">FAQs</a>
     <a routerLink="cart" class="button"> Cart</a>
-    <a (click)="logout()" class="button"> Log out</a>
+    <a routerLink="login" class="button"> Login</a>
   </div>
 </div>
 <router-outlet></router-outlet>
-</div>

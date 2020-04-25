@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { LoginResponse} from './models'
-import { ProductModel, CategoryModel} from './models'
+import { ProductModel, CategoryModel, User, Order} from './models'
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +11,11 @@ import { ProductModel, CategoryModel} from './models'
 export class ProductService {
   BASE_URL = 'http://localhost:8000'
   constructor( private http: HttpClient) { }
-  private productsUrl = 'api/products';  
-  private categoriesUrl = 'api/categories';  
+  //private productsUrl = 'api/products';  
+  //private categoriesUrl = 'api/categories';  
 
   getProducts(): Observable<ProductModel[]> {
-    return this.http.get<ProductModel[]>( `${this.BASE_URL}/api/products`)
+    return this.http.get<ProductModel[]>( `${this.BASE_URL}/api/products/`)
   }
 
   getProduct(id: number): Observable<ProductModel> {
@@ -62,7 +62,13 @@ export class ProductService {
       password: password
     })
   }
-
+  getUser():Observable<User>{
+    return this.http.get<User>(`${this.BASE_URL}/api/user`)
+  }
+  
+  getUserOrders(id: number): Observable<Order[]>{
+    return this.http.get<Order[]>(`${this.BASE_URL}/api/orders/${id}`)
+  }
 
 }
 
