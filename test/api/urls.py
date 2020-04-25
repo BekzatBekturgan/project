@@ -1,8 +1,9 @@
 from django.urls import path
 
 from api.views import category_list, products_list,products_by_category, product_detail, UserAPIView,UserDetailsAPIView, \
-     OrdersListAPIView, OrderDetailsAPIView, orders_by_user
+     OrdersListAPIView, OrderDetailsAPIView,get_user
 from rest_framework_jwt.views import obtain_jwt_token
+
 urlpatterns = [
      path('login/', obtain_jwt_token),
      path('categories/', category_list),
@@ -12,6 +13,6 @@ urlpatterns = [
      path('users/', UserAPIView.as_view()),
      path('users/<int:id>', UserDetailsAPIView.as_view()),
      path('orders/', OrdersListAPIView.as_view()),
-    # path('orders/<int:user_id>',OrderDetailsAPIView.as_view()),
-     path('orders/<int:user_id>', orders_by_user),
+     path('orders/<int:user_id>', OrderDetailsAPIView.as_view()),
+     path('user/', get_user)
 ]
