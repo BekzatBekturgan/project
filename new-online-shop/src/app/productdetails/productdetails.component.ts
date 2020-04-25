@@ -4,11 +4,8 @@ import { Location } from '@angular/common';
 import { ProductService } from '../product.service';
 import { ProductModel} from '../models'
 import { CartService } from '../cart.service';
-<<<<<<< HEAD
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ProductModel } from '../models'
-=======
->>>>>>> d6b2cf714877b5aa01fd163de151ab053bcebc45
+
+
 
 @Component({
   selector: 'app-productdetails',

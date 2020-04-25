@@ -7,7 +7,6 @@ import {
 
 import { ProductModel } from '../models';
 import { ProductService } from '../product.service';
-import { ProductModel } from '../models'
 
 @Component({
   selector: 'app-product-search',
