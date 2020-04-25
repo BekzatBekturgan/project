@@ -22,7 +22,6 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.items = this.cartService.getItems();
     this.getUser();
-    this.getUserOrders();
   }
 
   clearCart(){
@@ -30,7 +29,7 @@ export class CartComponent implements OnInit {
   }
 
   purchase(): void {
-    this.clearCart();
+    
   }
 
   getUser(){
@@ -39,8 +38,7 @@ export class CartComponent implements OnInit {
     
   }
   
-  getUserOrders(){
-
+  getUserOrders(): void{
     this.productService.getUserOrders(this.user.id)
     .subscribe( orderedItems=>this.orderedItems=orderedItems);
   }
