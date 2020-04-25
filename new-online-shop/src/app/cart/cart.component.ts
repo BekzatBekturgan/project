@@ -1,29 +1,47 @@
-import { Input, Component, OnInit } from '@angular/core';
-import { CartService } from '../cart.service';
+import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../product.service';
+import { CartService} from '../cart.service'
 import { Shipping } from '../shipping';
+import { Order, User} from '../models'
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  
+  user: User;
+  orderedItems: Order[];
   items;
-  model = new Shipping('', '', '', '', []);
-  
-  submitted = false;
   
   constructor(
     private cartService: CartService,
+    private productService: ProductService
   ) { }
 
   ngOnInit(): void {
     this.items = this.cartService.getItems();
+    this.getUser();
+    this.getUserOrders();
   }
+
   clearCart(){
     this.items=this.cartService.clearCart();
   }
+
   purchase(): void {
-    this.submitted = true; 
+    this.clearCart();
+  }
+
+  getUser(){
+    this.productService.getUser()
+    .subscribe( user=>this.user=user);
+    
+  }
+  
+  getUserOrders(){
+
+    this.productService.getUserOrders(this.user.id)
+    .subscribe( orderedItems=>this.orderedItems=orderedItems);
   }
 }

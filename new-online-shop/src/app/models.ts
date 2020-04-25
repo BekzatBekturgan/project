@@ -34,6 +34,6 @@ export class User{
 
 export class Order{
     id: number;
-    user:User;
-    items:Product;
+    user: number;
+    items: number;
 }

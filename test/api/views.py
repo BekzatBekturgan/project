@@ -86,16 +86,16 @@ class UserAPIView(APIView):
 
 
 class UserDetailsAPIView(APIView):
-    def get_object(self, id):
-        try:
-            return User.objects.get(id=id)
-        except User.DoesNotExist as e:
-            return Response({'error': str(e)})
+        def get_object(self, id):
+            try:
+                return User.objects.get(id=id)
+            except User.DoesNotExist as e:
+                return Response({'error': str(e)})
 
-    def get(self, request, id):
-        user = self.get_object(id)
-        serializer = UserSerializer(user)
-        return Response(serializer.data)
+        def get(self, request, id):
+            user = self.get_object(id)
+            serializer = UserSerializer(user)
+            return Response(serializer.data)
 
 @api_view(['GET'])
 def get_user(request):
@@ -107,10 +107,10 @@ def get_user(request):
         return Response('error')
 
 class OrdersListAPIView(APIView):
-    permission_classes = (IsAuthenticated,)
-    def get(self, request, user_id):
-        user_orders = Order.objects.get_users_orders(user_id)
-        serializer = OrderSerializer(user_orders, many=True)
+    # permission_classes = (IsAuthenticated,)
+    def get(self, request):
+        orders = Order.objects.all()
+        serializer = OrderSerializer(orders, many=True)
 
         return Response(serializer.data)
 
@@ -133,4 +133,18 @@ class OrderDetailsAPIView(APIView):
     def get(self, request, user_id):
         order = self.get_object(user_id)
         serializer = OrderSerializer(order)
+        return Response(serializer.data)
+
+
+
+@api_view(['GET'])
+def orders_by_user(request, user_id):
+    try:
+        user = User.objects.get(id=user_id)
+    except User.DoesNotExist as e:
+        return Response({'error': str(e)})
+
+    if request.method == 'GET':
+        orders = user.orders.get_users_orders(user_id)
+        serializer = OrderSerializer(orders, many=True)
         return Response(serializer.data)

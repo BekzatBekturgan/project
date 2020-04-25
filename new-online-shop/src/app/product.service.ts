@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { LoginResponse} from './models'
-import { ProductModel, CategoryModel, User} from './models'
+import { ProductModel, CategoryModel, User, Order} from './models'
 
 @Injectable({
   providedIn: 'root'
@@ -65,5 +65,10 @@ export class ProductService {
   getUser():Observable<User>{
     return this.http.get<User>(`${this.BASE_URL}/api/user`)
   }
+  
+  getUserOrders(id: number): Observable<Order[]>{
+    return this.http.get<Order[]>(`${this.BASE_URL}/api/orders/${id}`)
+  }
+
 }
 
