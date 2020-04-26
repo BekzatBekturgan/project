@@ -48,7 +48,6 @@ export class CartComponent implements OnInit {
           this.order = res
         }
       )
-      console.log(this.items[i])
     }
     alert('The products was added the list of orders')
     this.items = this.cartService.clearCart();

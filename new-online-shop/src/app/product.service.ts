@@ -72,7 +72,6 @@ export class ProductService {
   }
 
   postOrders(id: number, ord: Order): Observable<Order>{
-    console.log(3)
     return this.http.post<Order>(`${this.BASE_URL}/api/orders/${id}`, ord)
   }
 
