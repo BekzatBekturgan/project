@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { LoginResponse} from './models'
 import { ProductModel, CategoryModel, User, Order} from './models'
+import { Product } from './product';
 
 @Injectable({
   providedIn: 'root'
@@ -63,11 +64,16 @@ export class ProductService {
     })
   }
   getUser():Observable<User>{
-    return this.http.get<User>(`${this.BASE_URL}/api/user`)
+    return this.http.get<User>(`${this.BASE_URL}/api/user/`)
   }
   
   getUserOrders(id: number): Observable<Order[]>{
     return this.http.get<Order[]>(`${this.BASE_URL}/api/orders/${id}`)
+  }
+
+  postOrders(id: number, ord: Order): Observable<Order>{
+    console.log(3)
+    return this.http.post<Order>(`${this.BASE_URL}/api/orders/${id}`, ord)
   }
 
 }

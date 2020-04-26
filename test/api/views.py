@@ -1,6 +1,7 @@
 from rest_framework.decorators import api_view, permission_classes
 from django.contrib.auth.models import User
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+from rest_framework.utils import json
 
 from api.models import  Category, Product, Order
 from api.serializers import CategorySerializer, ProductSerializer, UserSerializer, OrderSerializer, ProductDetailSerializer
@@ -137,7 +138,7 @@ class OrderDetailsAPIView(APIView):
 
 
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 def orders_by_user(request, user_id):
     try:
         user = User.objects.get(id=user_id)
@@ -148,3 +149,11 @@ def orders_by_user(request, user_id):
         orders = user.orders.get_users_orders(user_id)
         serializer = OrderSerializer(orders, many=True)
         return Response(serializer.data)
+    elif request.method == 'POST':
+        request_body = json.loads(request.body)
+        serializer = OrderSerializer(data=request_body)
+        if(serializer.is_valid()):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response({'error': serializer.errors}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+

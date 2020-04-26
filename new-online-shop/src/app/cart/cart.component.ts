@@ -4,6 +4,7 @@ import { CartService} from '../cart.service'
 import { Shipping } from '../shipping';
 import { Order, User,ProductModel} from '../models'
 import { Product } from '../product';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-cart',
@@ -14,6 +15,10 @@ export class CartComponent implements OnInit {
   user: User;
   items;
   orderedItems=[]
+
+  cnt: number;
+  product: ProductModel
+  order: Order
   
   constructor(
     private cartService: CartService,
@@ -31,7 +36,22 @@ export class CartComponent implements OnInit {
   }
 
   purchase(): void {
-    
+    console.log(1)
+    this.cnt = this.cartService.getItems().length
+    for(let i = 0; i < this.cnt; i++){
+      const ord: Order = {
+        id: this.items[i].id,
+        user: this.user.id,
+        items: 15
+      }
+      this.productService.postOrders(this.user.id, ord).subscribe(
+        res=>{
+          this.order = res
+        }
+      )
+      console.log(this.items[i])
+    }
+    console.log(2)
   }
 
   getUser(){
