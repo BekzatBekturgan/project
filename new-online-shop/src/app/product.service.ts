@@ -4,7 +4,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { LoginResponse} from './models'
 import { ProductModel, CategoryModel, User, Order} from './models'
-import { Product } from './product';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +11,6 @@ import { Product } from './product';
 export class ProductService {
   BASE_URL = 'http://localhost:8000'
   constructor( private http: HttpClient) { }
-  //private productsUrl = 'api/products';  
-  //private categoriesUrl = 'api/categories';  
 
   getProducts(): Observable<ProductModel[]> {
     return this.http.get<ProductModel[]>( `${this.BASE_URL}/api/products/`)
@@ -47,15 +44,6 @@ export class ProductService {
     return of(result as T);
     };
   }
-  
-  searchHeroes(term: string): Observable<ProductModel[]> {
-    if (!term.trim()) {
-      return of([]);
-    }
-    return this.http.get<ProductModel[]>(`${this.BASE_URL}/api/products/?name=${term}`).pipe(
-    catchError(this.handleError<ProductModel[]>('searchProducts', []))
-    );
-  }
 
   login(username, password): Observable<LoginResponse>{
     return this.http.post<LoginResponse>(`${this.BASE_URL}/api/login/`, {
@@ -75,5 +63,13 @@ export class ProductService {
     return this.http.post<Order>(`${this.BASE_URL}/api/orders/${id}`, ord)
   }
 
+  searchHeroes(term: string): Observable<ProductModel[]> {
+    if (!term.trim()) {
+      return of([]);
+    }
+    return this.http.get<ProductModel[]>(`${this.BASE_URL}/api/products/?name=${term}`).pipe(
+    catchError(this.handleError<ProductModel[]>('searchProducts', []))
+    );
+  }
 }
 
