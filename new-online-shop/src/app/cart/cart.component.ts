@@ -42,7 +42,7 @@ export class CartComponent implements OnInit {
       const ord: Order = {
         id: this.items[i].id,
         user: this.user.id,
-        items: 15
+        items: this.items[i].id
       }
       this.productService.postOrders(this.user.id, ord).subscribe(
         res=>{
@@ -51,6 +51,8 @@ export class CartComponent implements OnInit {
       )
       console.log(this.items[i])
     }
+    alert('The products was added the list of orders')
+    this.items = this.cartService.clearCart();
     console.log(2)
   }
 
@@ -61,10 +63,11 @@ export class CartComponent implements OnInit {
   }
   
   getUserOrders(): void{
+    this.orderedItems = this.cartService.clearCart()
     this.productService.getUserOrders(this.user.id)
     .subscribe( orderedItems=>{
       for (var value of orderedItems) {
-        this.getProduct(value.id);
+        this.getProduct(value.items);
       }
     });
     
