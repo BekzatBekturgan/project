@@ -11,7 +11,7 @@ import { Order, User,ProductModel} from '../models'
 })
 export class CartComponent implements OnInit {
   user: User;
-  items;
+  items=[];
   orderedItems=[]
 
   cnt: number;
@@ -30,7 +30,7 @@ export class CartComponent implements OnInit {
 
   clearCart(){
     this.items=this.cartService.clearCart();
-    this.orderedItems=this.cartService.clearCart();
+    this.orderedItems=[]
   }
 
   purchase(): void {
@@ -65,8 +65,8 @@ export class CartComponent implements OnInit {
         this.getProduct(value.items);
       }
     });
-    
-    }
+  }
+  
   getProduct(id): void{
     this.productService.getProduct(id).subscribe(product=>{
       this.orderedItems.push(product)
