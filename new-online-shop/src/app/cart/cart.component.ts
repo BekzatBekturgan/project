@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
 import { CartService} from '../cart.service'
-import { Shipping } from '../shipping';
 import { Order, User,ProductModel} from '../models'
-import { Product } from '../product';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
 
 @Component({
   selector: 'app-cart',
@@ -13,7 +11,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class CartComponent implements OnInit {
   user: User;
-  items;
+  items=[];
   orderedItems=[]
 
   cnt: number;
@@ -32,7 +30,7 @@ export class CartComponent implements OnInit {
 
   clearCart(){
     this.items=this.cartService.clearCart();
-    this.orderedItems=this.cartService.clearCart();
+    this.orderedItems=[]
   }
 
   purchase(): void {
@@ -60,15 +58,15 @@ export class CartComponent implements OnInit {
   }
   
   getUserOrders(): void{
-    this.orderedItems = this.cartService.clearCart()
+    this.orderedItems = []
     this.productService.getUserOrders(this.user.id)
     .subscribe( orderedItems=>{
       for (var value of orderedItems) {
         this.getProduct(value.items);
       }
     });
-    
-    }
+  }
+  
   getProduct(id): void{
     this.productService.getProduct(id).subscribe(product=>{
       this.orderedItems.push(product)
