@@ -36,7 +36,6 @@ export class CartComponent implements OnInit {
   }
 
   purchase(): void {
-    console.log(1)
     this.cnt = this.cartService.getItems().length
     for(let i = 0; i < this.cnt; i++){
       const ord: Order = {
@@ -53,7 +52,6 @@ export class CartComponent implements OnInit {
     }
     alert('The products was added the list of orders')
     this.items = this.cartService.clearCart();
-    console.log(2)
   }
 
   getUser(){
